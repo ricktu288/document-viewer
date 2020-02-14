@@ -55,14 +55,14 @@ public class TouchManager {
                 LCTX.d("Creating default tap configuration...");
             }
             final TouchProfile def = addProfile(DEFAULT_PROFILE);
-            {
+            /*{
                 final Region r = def.addRegion(0, 0, 100, 100);
                 r.setAction(Touch.DoubleTap, R.id.actions_openOptionsMenu, true);
             }
             {
                 final Region r = def.addRegion(80, 0, 100, 20);
                 r.setAction(Touch.DoubleTap, R.id.mainmenu_close, true);
-            }
+            }*/
             {
                 final Region r = def.addRegion(0, 0, 100, 10);
                 r.setAction(Touch.SingleTap, R.id.actions_verticalConfigScrollUp, true);

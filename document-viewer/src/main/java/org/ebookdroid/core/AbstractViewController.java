@@ -35,6 +35,12 @@ import android.view.GestureDetector.SimpleOnGestureListener;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 
+import java.io.BufferedInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -556,6 +562,12 @@ public abstract class AbstractViewController extends AbstractComponentController
             return true;
         }
 
+        if (type == Touch.DoubleTap) {
+            if (processBackwardSearchTap(x, y)) {
+                return true;
+            }
+        }
+
         return processToggleFullscreenTap();
     }
 
@@ -585,6 +597,52 @@ public abstract class AbstractViewController extends AbstractComponentController
             if (LCTX.isDebugEnabled()) {
                 LCTX.d("Touch action not found");
             }
+        }
+        return false;
+    }
+
+    protected final boolean processBackwardSearchTap(final float x, final float y) {
+        final float zoom = base.getZoomModel().getZoom();
+        final RectF rect = new RectF(x, y, x, y);
+        rect.offset(getScrollX(), getScrollY());
+
+        final PageIterator pages = model.getPages(firstVisiblePage, lastVisiblePage + 1);
+        try {
+            final RectF bounds = new RectF();
+            for (final Page page : pages) {
+                page.getBounds(zoom, bounds);
+                if (RectF.intersects(bounds, rect)) {
+                    final int pageIndex = page.index.docIndex;
+                    final float pageX = (rect.left - bounds.left) / (bounds.right - bounds.left);
+                    final float pageY = (rect.top - bounds.top) / (bounds.bottom - bounds.top);
+                    LCTX.d("Page = " + pageIndex
+                            + ", x = " + pageX
+                            + ", y = " + pageY);
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            try {
+                                URL url = new URL("http://localhost:8080/?page=" + pageIndex + "&x=" + pageX + "&y=" + pageY);
+                                HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+                                try {
+                                    urlConnection.getInputStream();
+                                    final ActionEx action = getOrCreateAction(R.id.actions_doClose);
+                                    action.run();
+                                } finally {
+                                    urlConnection.disconnect();
+                                }
+                            } catch (MalformedURLException e) {
+                                LCTX.d(e.toString());
+                            } catch (IOException e) {
+                                LCTX.d(e.toString());
+                            }
+                        }
+                    }).start();
+                    return true;
+                }
+            }
+        } finally {
+            pages.release();
         }
         return false;
     }
