@@ -10,12 +10,16 @@ With the power of [Termux](https://termux.com/), [TeX Live](https://wiki.termux.
 
 ## Usage
 
+It is best used with a hardware keyboard.
+
+![Demo gif](demo.gif?raw=true)
+
 - In vim, enter `:F` to do forward search, or `:V` to view the output PDF without forward search (jump to Document Viewer).
 - In Document Viewer, double tapping on the document to do backward search (jump back to Vim).
 
 Note:
 - The TeX files must be compiled with SyncTeX enabled (`-synctex=1`).
-- When opening a TeX file in Vim, the path must be related to the directory of the main TeX file of the entire project.
+- When opening a TeX file in Vim, the working directory must be public (`/storage/emulated/0/...`) rather than private (`~/storage/shared/...`), and the path must be related to the directory of the main TeX file of the entire project.
 - In order for backward search to work, Document Reader must be started directly from vim with the above commands. Switching back to the app may not work.
 - To go back to vim from Document Reader without doing backward search, it is best to press the return button directly or use a "Close" action in Document Reader (configurable from the menu). After returning to vim, press Ctrl+C to terminate the pending command.
 - The "Recent Book" activity of Document Reader must not be in the background, or one will not jump back directly to vim.
