@@ -38,9 +38,6 @@ import android.view.MotionEvent;
 import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -612,32 +609,17 @@ public abstract class AbstractViewController extends AbstractComponentController
             for (final Page page : pages) {
                 page.getBounds(zoom, bounds);
                 if (RectF.intersects(bounds, rect)) {
-                    final int pageIndex = page.index.docIndex;
-                    final float pageX = (rect.left - bounds.left) / (bounds.right - bounds.left);
-                    final float pageY = (rect.top - bounds.top) / (bounds.bottom - bounds.top);
+                    int pageIndex = page.index.docIndex;
+                    float pageX = (rect.left - bounds.left) / (bounds.right - bounds.left);
+                    float pageY = (rect.top - bounds.top) / (bounds.bottom - bounds.top);
                     LCTX.d("Page = " + pageIndex
                             + ", x = " + pageX
                             + ", y = " + pageY);
-                    new Thread(new Runnable() {
-                        @Override
-                        public void run() {
-                            try {
-                                URL url = new URL("http://localhost:8080/?page=" + pageIndex + "&x=" + pageX + "&y=" + pageY);
-                                HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-                                try {
-                                    urlConnection.getInputStream();
-                                    final ActionEx action = getOrCreateAction(R.id.actions_doClose);
-                                    action.run();
-                                } finally {
-                                    urlConnection.disconnect();
-                                }
-                            } catch (MalformedURLException e) {
-                                LCTX.d(e.toString());
-                            } catch (IOException e) {
-                                LCTX.d(e.toString());
-                            }
-                        }
-                    }).start();
+                    final ActionEx action = getOrCreateAction(R.id.actions_doClose);
+                    action.addParameter(new Constant("pageIndex",pageIndex))
+                            .addParameter(new Constant("x",pageX))
+                            .addParameter(new Constant("y",pageY));
+                    action.run();
                     return true;
                 }
             }

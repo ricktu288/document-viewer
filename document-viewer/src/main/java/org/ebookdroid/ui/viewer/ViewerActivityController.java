@@ -66,6 +66,9 @@ import android.widget.Toast;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
@@ -906,6 +909,34 @@ public class ViewerActivityController extends AbstractActivityController<ViewerA
 
     @ActionMethod(ids = R.id.actions_doClose)
     public void doClose(final ActionEx action) {
+        final int pageIndex = action.getParameter("pageIndex", -1);
+        final float pageX = action.getParameter("x",0.0f);
+        final float pageY = action.getParameter("y",0.0f);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    URL url;
+                    if (pageIndex != -1) {
+                        url = new URL("http://localhost:8080/?page=" + pageIndex + "&x=" + pageX + "&y=" + pageY);
+                    } else {
+                        url = new URL("http://localhost:8080/");
+                    }
+                    HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+                    try {
+                        urlConnection.getInputStream();
+
+                    } finally {
+                        urlConnection.disconnect();
+                    }
+                } catch (MalformedURLException e) {
+                    LCTX.d(e.toString());
+                } catch (IOException e) {
+                    LCTX.d(e.toString());
+                }
+            }
+        }).start();
+
         if (documentModel != null) {
             documentModel.recycle();
         }
