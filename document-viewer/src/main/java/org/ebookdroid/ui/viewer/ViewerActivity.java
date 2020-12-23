@@ -42,6 +42,11 @@ import org.emdev.ui.uimanager.IUIManager;
 import org.emdev.utils.LayoutUtils;
 import org.emdev.utils.LengthUtils;
 
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+
 public class ViewerActivity extends AbstractActionActivity<ViewerActivity, ViewerActivityController> {
 
     public static final DisplayMetrics DM = new DisplayMetrics();
@@ -158,6 +163,34 @@ public class ViewerActivity extends AbstractActionActivity<ViewerActivity, Viewe
      */
     @Override
     protected void onPauseImpl(final boolean finishing) {
+        final int pageIndex = -1;
+        final float pageX = 0.0f;
+        final float pageY = 0.0f;
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    URL url;
+                    if (pageIndex != -1) {
+                        url = new URL("http://localhost:8080/?page=" + pageIndex + "&x=" + pageX + "&y=" + pageY);
+                    } else {
+                        url = new URL("http://localhost:8080/");
+                    }
+                    HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+                    try {
+                        urlConnection.getInputStream();
+
+                    } finally {
+                        urlConnection.disconnect();
+                    }
+                } catch (MalformedURLException e) {
+                    LCTX.d(e.toString());
+                } catch (IOException e) {
+                    LCTX.d(e.toString());
+                }
+            }
+        }).start();
+        finish();
         IUIManager.instance.onPause(this);
     }
 
