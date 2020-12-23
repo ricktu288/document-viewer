@@ -940,9 +940,9 @@ public class ViewerActivityController extends AbstractActivityController<ViewerA
         if (documentModel != null) {
             documentModel.recycle();
         }
-        if (scheme != null && scheme.temporary) {
+        //if (scheme != null && scheme.temporary) {
             CacheManager.clear(m_fileName);
-        }
+        //}
         SettingsManager.releaseBookSettings(id, bookSettings);
 
         if (getOrCreateAction(R.id.actions_doClose).getParameter("up", Boolean.FALSE).booleanValue()) {
