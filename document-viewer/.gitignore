@@ -12,6 +12,8 @@ release.properties
 ant.properties
 *.class
 *.apk
+release
+debug
 
 #Gradle
 .gradle

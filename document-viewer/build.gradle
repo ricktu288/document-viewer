@@ -33,7 +33,7 @@ ext.versionCodes = ['armeabi-v7a':2, 'x86':3, 'arm64-v8a':5, 'x86_64':6]
 import com.android.build.OutputFile
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 29
     // copied from: https://github.com/kontalk/androidclient
     // temporarly introduced to fix Cyanogenmod bug
     // https://issuetracker.google.com/issues/64434571#comment35
@@ -43,7 +43,7 @@ android {
 
     defaultConfig {
         minSdkVersion 14
-        targetSdkVersion 28
+        targetSdkVersion 29
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 
