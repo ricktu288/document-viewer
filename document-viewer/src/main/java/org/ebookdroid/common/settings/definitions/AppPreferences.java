@@ -1,6 +1,6 @@
 package org.ebookdroid.common.settings.definitions;
 
-import static org.sufficientlysecure.viewer.R.string.*;
+import static tex.pdfsync.viewer.R.string.*;
 
 import org.ebookdroid.common.settings.types.DocumentViewMode;
 import org.ebookdroid.common.settings.types.PageAlign;

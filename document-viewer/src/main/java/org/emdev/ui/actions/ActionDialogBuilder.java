@@ -1,6 +1,6 @@
 package org.emdev.ui.actions;
 
-import org.sufficientlysecure.viewer.R;
+import tex.pdfsync.viewer.R;
 
 import android.content.Context;
 import android.support.v7.app.AlertDialog;

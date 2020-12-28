@@ -1,6 +1,6 @@
 package org.ebookdroid.ui.library.adapters;
 
-import org.sufficientlysecure.viewer.R;
+import tex.pdfsync.viewer.R;
 import org.ebookdroid.ui.library.IBrowserActivity;
 import org.ebookdroid.ui.library.adapters.BooksAdapter.ViewHolder;
 

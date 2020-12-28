@@ -1,6 +1,6 @@
 package org.emdev.ui.actions;
 
-import org.sufficientlysecure.viewer.R;
+import tex.pdfsync.viewer.R;
 
 import android.view.View;
 

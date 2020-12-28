@@ -1,6 +1,6 @@
 package org.ebookdroid.common.notifications;
 
-import org.sufficientlysecure.viewer.R;
+import tex.pdfsync.viewer.R;
 
 import android.annotation.TargetApi;
 import android.app.Notification;

@@ -1,6 +1,6 @@
 package org.ebookdroid.ui.settings.fragments;
 
-import org.sufficientlysecure.viewer.R;
+import tex.pdfsync.viewer.R;
 
 import android.annotation.TargetApi;
 

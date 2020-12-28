@@ -1,6 +1,6 @@
 package org.ebookdroid.ui.viewer.views;
 
-import org.sufficientlysecure.viewer.R;
+import tex.pdfsync.viewer.R;
 import org.ebookdroid.core.ViewState;
 import org.ebookdroid.ui.viewer.IView;
 

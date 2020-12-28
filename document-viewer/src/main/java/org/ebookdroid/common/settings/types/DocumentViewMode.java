@@ -1,7 +1,7 @@
 package org.ebookdroid.common.settings.types;
 
 import org.ebookdroid.EBookDroidApp;
-import org.sufficientlysecure.viewer.R;
+import tex.pdfsync.viewer.R;
 import org.ebookdroid.common.settings.books.BookSettings;
 import org.ebookdroid.core.VScrollController;
 import org.ebookdroid.core.HScrollController;

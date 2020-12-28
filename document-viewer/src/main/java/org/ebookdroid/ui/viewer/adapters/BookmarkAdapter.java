@@ -1,6 +1,6 @@
 package org.ebookdroid.ui.viewer.adapters;
 
-import org.sufficientlysecure.viewer.R;
+import tex.pdfsync.viewer.R;
 import org.ebookdroid.common.settings.SettingsManager;
 import org.ebookdroid.common.settings.books.BookSettings;
 import org.ebookdroid.common.settings.books.Bookmark;

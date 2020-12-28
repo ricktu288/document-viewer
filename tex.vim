@@ -12,7 +12,7 @@ function! ViewPDF(forward)
     else
         let args = ''
     endif
-    let run = system('am start -a android.intent.action.VIEW -d "file://$PWD/'.pdf.'"'.args.' org.sufficientlysecure.viewer/org.ebookdroid.ui.viewer.ViewerActivity')
+    let run = system('am start -a android.intent.action.VIEW -d "file://$PWD/'.pdf.'"'.args.' tex.pdfsync.viewer/org.ebookdroid.ui.viewer.ViewerActivity')
     let pos = system("echo 'HTTP/1.0 200 OK\nContent-Length: 1\n' | nc -l 8080")
     let bpage = matchstr(pos,'\vpage\=\zs(\d*)')
     if bpage

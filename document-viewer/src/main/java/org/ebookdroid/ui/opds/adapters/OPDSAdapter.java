@@ -1,6 +1,6 @@
 package org.ebookdroid.ui.opds.adapters;
 
-import org.sufficientlysecure.viewer.R;
+import tex.pdfsync.viewer.R;
 import org.ebookdroid.common.cache.CacheManager;
 import org.ebookdroid.common.cache.ThumbnailFile;
 import org.ebookdroid.common.settings.OpdsSettings;

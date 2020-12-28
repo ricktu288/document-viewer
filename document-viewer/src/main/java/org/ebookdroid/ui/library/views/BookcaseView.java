@@ -4,7 +4,7 @@ import org.ebookdroid.ui.library.RecentActivity;
 import org.ebookdroid.ui.library.RecentActivityController;
 import org.emdev.ui.AbstractActionActivity;
 import org.emdev.ui.AbstractActivityController;
-import org.sufficientlysecure.viewer.R;
+import tex.pdfsync.viewer.R;
 import org.ebookdroid.ui.library.adapters.BooksAdapter;
 import org.ebookdroid.ui.library.adapters.RecentAdapter;
 

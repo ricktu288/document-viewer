@@ -5,7 +5,7 @@ import org.ebookdroid.EBookDroidApp;
 import org.ebookdroid.common.settings.types.RotationType;
 import org.emdev.ui.actions.ActionMenuHelper;
 import org.emdev.ui.uimanager.UIManagerAppCompat;
-import org.sufficientlysecure.viewer.R;
+import tex.pdfsync.viewer.R;
 import org.ebookdroid.common.bitmaps.BitmapManager;
 import org.ebookdroid.common.bitmaps.ByteBufferManager;
 import org.ebookdroid.common.cache.CacheManager;

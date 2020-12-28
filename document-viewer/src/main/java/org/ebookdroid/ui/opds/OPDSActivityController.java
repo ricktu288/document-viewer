@@ -1,6 +1,6 @@
 package org.ebookdroid.ui.opds;
 
-import org.sufficientlysecure.viewer.R;
+import tex.pdfsync.viewer.R;
 import org.ebookdroid.opds.model.Book;
 import org.ebookdroid.opds.model.Entry;
 import org.ebookdroid.opds.model.Feed;

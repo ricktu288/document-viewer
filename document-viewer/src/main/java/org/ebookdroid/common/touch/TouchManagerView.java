@@ -1,6 +1,6 @@
 package org.ebookdroid.common.touch;
 
-import org.sufficientlysecure.viewer.R;
+import tex.pdfsync.viewer.R;
 import org.ebookdroid.common.touch.TouchManager.Region;
 import org.ebookdroid.common.touch.TouchManager.TouchProfile;
 import org.ebookdroid.ui.viewer.IActivityController;

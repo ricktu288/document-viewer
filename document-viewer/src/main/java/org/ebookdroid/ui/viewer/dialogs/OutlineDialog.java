@@ -1,6 +1,6 @@
 package org.ebookdroid.ui.viewer.dialogs;
 
-import org.sufficientlysecure.viewer.R;
+import tex.pdfsync.viewer.R;
 import org.ebookdroid.common.settings.books.BookSettings;
 import org.ebookdroid.core.codec.OutlineLink;
 import org.ebookdroid.ui.viewer.IActivityController;

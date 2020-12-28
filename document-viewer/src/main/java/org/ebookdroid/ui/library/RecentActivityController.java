@@ -3,7 +3,7 @@ package org.ebookdroid.ui.library;
 import org.ebookdroid.CodecType;
 import org.ebookdroid.EBookDroidApp;
 import org.emdev.ui.uimanager.UIManagerAppCompat;
-import org.sufficientlysecure.viewer.R;
+import tex.pdfsync.viewer.R;
 import org.ebookdroid.common.cache.CacheManager;
 import org.ebookdroid.common.cache.CacheManager.ICacheListener;
 import org.ebookdroid.common.cache.ThumbnailFile;

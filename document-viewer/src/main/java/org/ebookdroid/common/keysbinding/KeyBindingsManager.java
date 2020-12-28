@@ -1,6 +1,6 @@
 package org.ebookdroid.common.keysbinding;
 
-import org.sufficientlysecure.viewer.R;
+import tex.pdfsync.viewer.R;
 import org.ebookdroid.common.settings.AppSettings;
 
 import android.view.KeyEvent;

@@ -3,7 +3,7 @@ package org.ebookdroid.ui.library;
 import org.emdev.ui.actions.ActionEx;
 import org.emdev.ui.actions.params.Constant;
 import org.emdev.ui.uimanager.UIManagerAppCompat;
-import org.sufficientlysecure.viewer.R;
+import tex.pdfsync.viewer.R;
 import org.ebookdroid.common.settings.LibSettings;
 import org.ebookdroid.common.settings.books.BookSettings;
 import org.ebookdroid.common.settings.books.Bookmark;

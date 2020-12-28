@@ -1,7 +1,7 @@
 package org.ebookdroid.ui.library.adapters;
 
 import org.ebookdroid.EBookDroidApp;
-import org.sufficientlysecure.viewer.R;
+import tex.pdfsync.viewer.R;
 import org.ebookdroid.common.settings.SettingsManager;
 
 import android.database.DataSetObserver;

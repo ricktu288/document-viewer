@@ -1,6 +1,6 @@
 package org.ebookdroid.common.cache;
 
-import org.sufficientlysecure.viewer.R;
+import tex.pdfsync.viewer.R;
 import org.ebookdroid.common.bitmaps.BitmapManager;
 import org.ebookdroid.common.cache.CacheManager.ICacheListener;
 

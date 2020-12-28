@@ -1,6 +1,6 @@
 package org.ebookdroid.common.settings.books;
 
-import org.sufficientlysecure.viewer.R;
+import tex.pdfsync.viewer.R;
 
 import org.emdev.BaseDroidApp;
 import org.emdev.utils.enums.ResourceConstant;

@@ -16,7 +16,7 @@
  */
 package org.emdev.ui.widget;
 
-import org.sufficientlysecure.viewer.R;
+import tex.pdfsync.viewer.R;
 
 import android.content.Context;
 import android.content.res.ColorStateList;
