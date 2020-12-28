@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
-<string name="app_name">문서 뷰어</string>
+
 
 <string name="confirmclose_title">뷰어 닫기 &#8230;</string>
 <string name="confirmclose_msg">정말로 이 문서를 닫으시겠습니까?</string>

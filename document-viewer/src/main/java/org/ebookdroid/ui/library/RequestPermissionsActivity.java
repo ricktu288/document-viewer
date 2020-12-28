@@ -10,6 +10,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import tex.pdfsync.viewer.MainActivity;
 import tex.pdfsync.viewer.R;
 
 public class RequestPermissionsActivity extends AppCompatActivity {
@@ -46,7 +47,7 @@ public class RequestPermissionsActivity extends AppCompatActivity {
     }
 
     private void onSuccess() {
-        Intent intent = new Intent(this, RecentActivity.class);
+        Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
 
         finish();

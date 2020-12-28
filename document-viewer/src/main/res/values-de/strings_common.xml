@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
-    <string name="app_name">"Dokumentenbetrachter"</string>
+
     <string name="confirmclose_title">"Betrachter schliessen"</string>
     <string name="confirmclose_msg">"Wollen Sie dieses Dokument wirklich schliessen?"</string>
     <string name="confirmsave_msg">"Wollen Sie dieses Dokument speichern?"</string>

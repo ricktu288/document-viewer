@@ -1,0 +1,83 @@
+<html>
+<body>
+<h1>Installation</h1>
+<ol>
+    <li>Install <a href="https://play.google.com/store/apps/details?id=com.termux">Termux</a>.</li>
+    <li>In Termux, install TeX Live, Vim, and Netcat:
+<code style="display: block; white-space: pre-wrap">
+pkg install texlive vim netcat
+
+</code></li>
+<li>Grant storage permission for Termux:
+<code style="display: block; white-space: pre-wrap">
+termux-setup-storage
+
+</code></li>
+<li>It is recommnaded to install some auto-compile plugin such as <a href="https://github.com/lervag/vimtex">vimtex</a>. If you wish to type LaTeX code with the software keyboard, then you can install <a href="https://github.com/ricktu288/vim-quickspell">vim-quickspell</a>.
+<li>Add the following code to your <code>~/.vimrc</code> or <code>~/.vim/ftplugin/tex.vim:</code>
+<code style="display: block; white-space: pre-wrap">
+function! ViewPDF(forward)
+    let pdf = system('echo -n *.synctex.gz')[:-12].'.pdf'
+    let info = system('pdfinfo '.pdf)
+    let w = str2float(matchstr(info,'\vPage size: *\zs(\d*\.?\d*)'))
+    let h = str2float(matchstr(info,'\vPage size:.*x \zs(\d*\.?\d*)'))
+    if a:forward
+        let sync = system('synctex view -i '.line('.').':'.col('.').':'.expand('%').' -o '.pdf)
+        let page = matchstr(sync,'\vPage:\zs(\d*)')
+        let x = str2float(matchstr(sync,'\vx:\zs(\d*.?\d*)'))
+        let y = str2float(matchstr(sync,'\vy:\zs(\d*.?\d*)'))
+        let args = ' -e pageIndex '.(page - 1).' -e offsetX '.string(x / w).' -e offsetY '.string(y / h)
+    else
+        let args = ''
+    endif
+    let run = system('am start -a android.intent.action.VIEW -d "file://$PWD/'.pdf.'"'.args.' tex.pdfsync.viewer/org.ebookdroid.ui.viewer.ViewerActivity')
+    let pos = system("echo 'HTTP/1.0 200 OK\nContent-Length: 1\n' | nc -l 8080")
+    let bpage = matchstr(pos,'\vpage\=\zs(\d*)')
+    if bpage
+        let bx = str2float(matchstr(pos,'\vx\=\zs(\d*.?\d*)'))
+        let by = str2float(matchstr(pos,'\vy\=\zs(\d*.?\d*)'))
+        let bsync = system('synctex edit -o '.(bpage + 1).':'.string(bx * w).':'.string(by * h).':'.pdf)
+        let input = matchstr(bsync,'\vInput:.*/\./\zs(.*)\ze\nLine')
+        let line = matchstr(bsync,'\vLine:\zs(\d*)')
+        exec 'ex '.input
+        exec line
+    endif
+endfunction
+command V call ViewPDF(0)
+command F call ViewPDF(1)
+</code></li>
+</ol>
+<h1>Usage</h1>
+It is best used with a hardware keyboard.<br>
+<img src="demo.gif">
+
+<ul>
+    <li>In vim, enter <code>:F</code> to do forward search, or <code>:V</code> to view the output PDF without forward search (jump to Document Viewer).</li>
+    <li>In Document Viewer, double tapping on the document to do backward search (jump back to Vim). If it jumps back to this page instead, just press the back button and try again.</li>
+</ul>
+<br>
+Note:
+<ul>
+    <li>The TeX files must be compiled with SyncTeX enabled (<code>-synctex=1</code>).</li>
+    <li>The tex file must be in a public directory (<code>/sdcard/...</code>) rather than private (inside <code>$HOME</code>). Symlinks such as <code>~/storage/shared/...</code> also cannot be used.</li>
+    <li>When opening a TeX file in Vim, the working directory must be that of the main TeX file of the entire project. That is, start vim by
+<code style="display: block; white-space: pre-wrap">
+cd /sdcard/your_folder
+vim main.tex
+
+</code>
+rather than
+<code style="display: block; white-space: pre-wrap">
+vim /sdcard/your_folder/main.tex
+
+</code>
+    </li>
+    <li>Split screen is not supported.</li>
+    <li>If vim is not responding when you switch back, press Ctrl-C.</li>
+    <li>This app uses port 8080 to communicate with vim.</li>
+</ul>
+<h1>About</h1>
+This app is a fork of <a href="https://github.com/SufficientlySecure/document-viewer">document-viewer</a> with SyncTeX support and is specialized for viewing LaTeX document from vim on Termux.
+The source code is available <a href="https://github.com/ricktu288/document-viewer">on Github</a> and is licensed under the GPLv3+.
+</body>
+</html>
